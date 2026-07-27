@@ -149,7 +149,16 @@ cp backend/config.sample.php backend/config.php
 - 브라우저 개발자도구(F12) → 콘솔/네트워크에서 `/backend/submit.php` 응답을 확인하세요.
 
 **Q. 이미지가 깨져요.**
+- `index.html`을 파일로 직접 열지 말고, 반드시 **웹서버(호스팅 또는 로컬 서버)** 를 통해 접속하세요(경로가 서버 기준).
 - 1단계에서 `--rewrite-domain` 옵션을 넣었는지 확인하세요. 안 넣었다면 다시 실행하면 됩니다.
+
+**Q. 일부 이미지·영상이 안 보여요.**
+- 원본 캡처(HTTrack)가 못 받은 자산(반응형 축소본, 일부 영상)이 있습니다.
+- 인터넷 되는 PC에서 원본 사이트가 살아있는 동안 아래로 자동 보충하세요:
+  ```
+  php tools/download-missing.php            # 실제 다운로드
+  php tools/download-missing.php --dry-run  # 목록만 확인
+  ```
 
 **Q. 관리자 주소를 바꾸고 싶어요.**
 - `backend/admin` 폴더 이름을 바꾸면 접속 주소도 그에 맞춰 바뀝니다. (예: `backend/manage`)
