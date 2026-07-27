@@ -224,41 +224,6 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
     
 
     
-    <!-- JKWITHME_CRITEO_STATIC_TAG_V2_START -->
-
-    <!-- Criteo Loader -->
-    
-
-    
-
-    
-    
-    <!-- Criteo Conversion Tag - Form Success / Submit Fallback -->
-    <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function () {
-
-      // Contact Form 7 전송 성공 시
-      document.addEventListener('wpcf7mailsent', function () {
-        jkwCriteoSendConversion();
-      }, false);
-
-      // 일반 문의폼 submit 시 fallback
-      var forms = document.querySelectorAll(
-        'form[id*="form"], form[class*="form"], form[id*="jkwf"], form[class*="jkwf"], form[id*="contact"], form[class*="contact"]'
-      );
-
-      forms.forEach(function(form) {
-        form.addEventListener('submit', function() {
-          setTimeout(function() {
-            jkwCriteoSendConversion();
-          }, 1200);
-        });
-      });
-
-    });
-    </script>
-
-    <!-- JKWITHME_CRITEO_STATIC_TAG_V2_END -->
 
     <script>
                 var jkw_s3_buckets = ["aurawebsol.s3.ap-northeast-2.amazonaws.com","s3.ap-northeast-2.amazonaws.com"];
@@ -271,9 +236,6 @@ button.fl-builder-feedback-button.fl-builder-button {
     display: none;
 }
 </style>
-<!-- Criteo 로더 파일 -->
-
-<!-- END Criteo 로더 파일 -->
 <link rel='stylesheet' id='fl-builder-google-fonts-02735c9865a73b26915dd8188361db00-css' href='http://fonts.googleapis.com/css?family=Noto%20Sans:400,700,300,600,100,500,200|Nanum%20Myeongjo:400|Noto%20Serif%20KR:200,700,400&amp;ver=7.0.2' media='all' />
 
 </head>
