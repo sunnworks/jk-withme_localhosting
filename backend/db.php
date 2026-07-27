@@ -6,6 +6,9 @@
 
 declare(strict_types=1);
 
+// mbstring 등 확장모듈이 없는 환경(php.ini 없는 로컬 PHP 등)을 위한 폴백
+require_once __DIR__ . '/compat.php';
+
 /** 설정 로드 (config.php 없으면 안내 후 종료) */
 function jk_config(): array
 {

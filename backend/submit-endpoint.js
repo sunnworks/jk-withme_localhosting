@@ -94,7 +94,46 @@
         }
     }
 
-    function boot() { apply(); wireSearch(); }
+    // 5) 배너 "상담 예약 및 문의하기" 버튼(#forms 앵커) 클릭 시
+    //    상담신청 폼까지 부드럽게 스크롤하고 첫 입력칸에 포커스를 줍니다.
+    //    (기본 앵커 점프는 애니메이션(fade-up)으로 아직 안 보이는 영역에
+    //     멈춰 "조금만 스크롤되고 마는" 것처럼 보이는 문제가 있었음)
+    function wireInquiryButtons() {
+        var links = document.querySelectorAll('a[href="#forms"], a[href$="#forms"]');
+        for (var i = 0; i < links.length; i++) {
+            var a = links[i];
+            if (a.getAttribute('data-jkw-forms')) continue;
+            a.setAttribute('data-jkw-forms', '1');
+            a.addEventListener('click', function (e) {
+                var target = document.getElementById('forms');
+                if (!target) return; // 대상이 없으면 기본 동작에 맡김
+                e.preventDefault();
+                // fade-up 애니메이션으로 숨겨진 대상을 즉시 표시(레이아웃 확정)
+                var hidden = target.querySelectorAll('.fl-animation:not(.fl-animated)');
+                for (var h = 0; h < hidden.length; h++) {
+                    hidden[h].classList.add('fl-animated');
+                    hidden[h].style.opacity = '1';
+                }
+                try {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } catch (err) {
+                    target.scrollIntoView();
+                }
+                // 스크롤이 어느 정도 진행된 뒤 첫 입력칸에 포커스
+                setTimeout(function () {
+                    var first = target.querySelector(
+                        'input[name="text_2"], input[type="text"], select, textarea'
+                    );
+                    if (first) {
+                        try { first.focus({ preventScroll: true }); }
+                        catch (err2) { first.focus(); }
+                    }
+                }, 600);
+            });
+        }
+    }
+
+    function boot() { apply(); wireSearch(); wireInquiryButtons(); }
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', boot);
