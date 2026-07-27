@@ -35,12 +35,30 @@
 
 ---
 
-## 필요한 것
+## 필요한 것 (선행 설치)
 
-- **PHP 7.4 이상** 하나만 있으면 됩니다. (SQLite는 PHP에 기본 포함)
-  - 설치 확인: 터미널/명령프롬프트에서 `php -v`
-  - 없으면: Windows는 [XAMPP](https://www.apachefriends.org) 설치(안에 PHP 포함),
-    Mac은 기본 내장되어 있거나 `brew install php`
+**PHP 7.4 이상** 하나만 있으면 됩니다. (DB는 SQLite 사용 — 별도 설치 불필요)
+
+### 1) PHP 설치
+- **Windows(권장)**: [XAMPP](https://www.apachefriends.org) 설치 → 안에 PHP 포함.
+  설치 후 PHP 폴더(예: `C:\xampp\php`)를 시스템 환경변수 `PATH`에 추가.
+- **Mac**: 보통 기본 내장. 없으면 `brew install php`
+- **설치 확인**: 터미널/명령프롬프트에서 `php -v` → 버전이 나오면 OK
+
+### 2) SQLite 확장 확인 (Windows에서 가끔 필요)
+- `run-local.bat`이 자동으로 SQLite 확장을 켜서 실행하므로 **보통 그냥 됩니다.**
+- 만약 `could not find driver` 오류가 나면 php.ini에서 아래를 켜주세요:
+  1. `php --ini` 로 `php.ini` 위치 확인 (`(none)`이면 PHP 폴더의 `php.ini-development`를 `php.ini`로 복사)
+  2. `php.ini`를 메모장으로 열어 아래 줄 앞의 `;` 제거 후 저장:
+     ```
+     extension_dir = "ext"
+     extension=pdo_sqlite
+     extension=sqlite3
+     ```
+  3. `run-local.bat` 다시 실행
+
+> ※ 로컬은 **이메일 실제 발송·일부 외부연동(지도 등)은 온라인에서만** 동작합니다(정상).
+>   문의 접수·관리자·검색·전후사진 필터는 로컬에서 정상 동작합니다.
 
 ---
 
