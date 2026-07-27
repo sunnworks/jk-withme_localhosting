@@ -22,6 +22,24 @@ if ($reset && is_file($dbPath)) {
     echo "기존 DB 삭제됨.\n";
 }
 
+// --- SQLite 드라이버 확인(꺼져 있으면 친절히 안내) ---
+if (!extension_loaded('pdo_sqlite') || !in_array('sqlite', PDO::getAvailableDrivers(), true)) {
+    fwrite(STDERR, "\n");
+    fwrite(STDERR, "==================================================================\n");
+    fwrite(STDERR, " [오류] PHP의 SQLite 드라이버(pdo_sqlite)가 꺼져 있습니다.\n");
+    fwrite(STDERR, "==================================================================\n");
+    fwrite(STDERR, " 해결 방법 (php.ini에서 한 줄만 켜면 됩니다):\n");
+    fwrite(STDERR, "  1) 명령창에서  php --ini  실행 → 'Loaded Configuration File' 경로 확인\n");
+    fwrite(STDERR, "  2) 그 php.ini 파일을 메모장으로 열기\n");
+    fwrite(STDERR, "  3) 아래 두 줄 앞의 세미콜론(;)을 지우고 저장:\n");
+    fwrite(STDERR, "        ;extension=pdo_sqlite   ->   extension=pdo_sqlite\n");
+    fwrite(STDERR, "        ;extension=sqlite3      ->   extension=sqlite3\n");
+    fwrite(STDERR, "  4) run-local.bat 을 다시 실행\n");
+    fwrite(STDERR, "==================================================================\n");
+    fwrite(STDERR, " (현재 사용 가능한 PDO 드라이버: " . implode(', ', PDO::getAvailableDrivers() ?: ['없음']) . ")\n\n");
+    exit(1);
+}
+
 $fresh = !is_file($dbPath);
 $db = new PDO('sqlite:' . $dbPath);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
