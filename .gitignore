@@ -1,0 +1,8 @@
+# 로컬 실행 시 생성되는 SQLite 데이터 파일 (커밋하지 않음)
+site/backend/data/*.sqlite
+site/backend/data/*.db
+backend/config.php
+
+# OS 잡파일
+.DS_Store
+Thumbs.db

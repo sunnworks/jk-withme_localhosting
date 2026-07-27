@@ -1,0 +1,613 @@
+/**
+ * JK위드미팩 전후사진 프론트엔드 스타일
+ * 반응형 디자인 + 최고 품질 UI/UX
+ */
+
+/* 컨테이너 */
+.jkw-ba-gallery-container {
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0 auto;
+}
+
+/* 카테고리 필터 */
+.ba-category-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+    justify-content: flex-start;
+}
+
+.ba-cat-btn {
+    padding: 12px 28px;
+    background: #ffffff;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.ba-cat-btn:hover {
+    border-color: #3b82f6;
+    color: #3b82f6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.ba-cat-btn.active {
+    background: #333333;
+    color: white;
+    border-color: #333333;
+    box-shadow: 0 4px 16px rgba(51, 51, 51, 0.25);
+}
+
+/* 2차 카테고리 필터 */
+.ba-subcategory-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+    justify-content: flex-start;
+    padding: 16px 20px;
+    background: #f9fafb;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+/* 3차 카테고리 필터 (더 작고 어두운 배경) */
+.ba-third-level-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+    justify-content: flex-start;
+    padding: 12px 16px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    margin-left: 20px; /* 들여쓰기로 계층 표현 */
+}
+
+/* 4차 카테고리 필터 (가장 작고 가장 어두운 배경) */
+.ba-fourth-level-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+    justify-content: flex-start;
+    padding: 10px 14px;
+    background: #e2e8f0;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    margin-left: 40px; /* 더 깊은 들여쓰기 */
+}
+
+/* 3차 카테고리 버튼 (2차보다 작음) */
+.ba-third-btn {
+    padding: 6px 14px;
+    background: white;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ba-third-btn:hover {
+    border-color: #94a3b8;
+    color: #334155;
+    background: #f8fafc;
+}
+
+.ba-third-btn.active {
+    background: #475569;
+    color: white;
+    border-color: #475569;
+    box-shadow: 0 2px 8px rgba(71, 85, 105, 0.2);
+}
+
+/* 4차 카테고리 버튼 (가장 작음) */
+.ba-fourth-btn {
+    padding: 5px 12px;
+    background: white;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ba-fourth-btn:hover {
+    border-color: #94a3b8;
+    color: #334155;
+    background: #f8fafc;
+}
+
+.ba-fourth-btn.active {
+    background: #64748b;
+    color: white;
+    border-color: #64748b;
+    box-shadow: 0 2px 6px rgba(100, 116, 139, 0.2);
+}
+
+.ba-subcat-btn {
+    padding: 8px 18px;
+    background: white;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ba-subcat-btn:hover {
+    border-color: #9ca3af;
+    color: #374151;
+    background: #f3f4f6;
+}
+
+.ba-subcat-btn.active {
+    background: #4b5563;
+    color: white;
+    border-color: #4b5563;
+    box-shadow: 0 2px 8px rgba(75, 85, 99, 0.2);
+}
+
+/* 갤러리 그리드 */
+.ba-gallery-grid {
+    display: grid;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+/* 그리드 레이아웃 (PC) */
+.ba-gallery-grid.cols-1 { grid-template-columns: 1fr; }
+.ba-gallery-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.ba-gallery-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+/* 갤러리 아이템 */
+.ba-gallery-item {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06);
+}
+
+.ba-gallery-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12), 0 6px 12px rgba(0,0,0,0.08);
+    border-color: #d1d5db;
+}
+
+/* 이미지 래퍼 */
+.ba-image-wrapper {
+    position: relative;
+}
+
+/* 방향 선택 탭 (이미지 하단 중앙에 표시 - 다중 이미지만) */
+.ba-direction-tabs {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24px;
+    padding: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    backdrop-filter: blur(8px);
+}
+
+.ba-dir-tab {
+    padding: 8px 20px;
+    background: transparent;
+    border: none;
+    border-radius: 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.ba-dir-tab:hover {
+    background: rgba(241, 245, 249, 0.8);
+    color: #334155;
+}
+
+.ba-dir-tab.active {
+    background: #1e293b;
+    color: #ffffff;
+}
+
+/* 이미지 컨테이너 */
+.ba-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    position: relative; /* 방향 버튼의 기준점 */
+}
+
+/* 개별 이미지 */
+.ba-image {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: #f8fafc;
+}
+
+.ba-image.ba-before {
+    border-right: 2px solid #f1f5f9;
+}
+
+.ba-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.ba-gallery-item:hover .ba-img {
+    transform: scale(1.05);
+}
+
+/* 이미지 라벨 */
+.ba-image-label {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: rgba(0, 0, 0, 0.45);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+}
+
+.ba-image-label.after {
+    background: rgba(51, 51, 51, 0.9);
+}
+
+/* 로그인 오버레이 */
+.ba-before.locked {
+    position: relative;
+}
+
+.ba-login-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+}
+
+.ba-login-content {
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.ba-lock-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 16px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.ba-login-content p {
+    margin: 0 0 20px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.ba-login-btn {
+    display: inline-block;
+    padding: 12px 32px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.ba-login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.6);
+}
+
+/* 제목 */
+.ba-item-title {
+    padding: 18px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: left;
+    border-top: 1px solid #e5e7eb;
+    background: #333333;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
+}
+
+/* 이전 방향 스위처 스타일 제거됨 - 새로운 탭 스타일 사용 */
+
+/* 빈 메시지 */
+.ba-empty-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+    color: #94a3b8;
+}
+
+.ba-empty-message p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* 페이지네이션 */
+.ba-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 48px;
+}
+
+.ba-pagination ul,
+.ba-pagination .page-numbers {
+    display: inline-flex;
+    gap: 6px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+.ba-pagination ul li,
+.ba-pagination .page-numbers li {
+    display: inline-block;
+    list-style: none;
+}
+
+.ba-pagination a,
+.ba-pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 5px 10px;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    color: #64748b;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.ba-pagination a:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+    color: #1e293b;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ba-pagination .current {
+    background: #1e293b;
+    color: white;
+    border-color: #1e293b;
+    box-shadow: 0 2px 8px rgba(30, 41, 59, 0.3);
+}
+
+.ba-pagination .dots {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    color: #94a3b8;
+}
+
+.ba-pagination .prev,
+.ba-pagination .next {
+    font-weight: 600;
+    padding: 0 16px;
+}
+
+/* 태블릿 (768px - 1024px) */
+@media (max-width: 1024px) {
+    /* 3열은 태블릿에서 2열로 */
+    .ba-gallery-grid.cols-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ba-category-filter {
+        gap: 8px;
+    }
+
+    .ba-cat-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* 모바일 (< 768px) */
+@media (max-width: 767px) {
+    .ba-gallery-grid {
+        gap: 16px;
+    }
+
+    /* 모든 열은 모바일에서 1열로 */
+    .ba-gallery-grid.cols-2,
+    .ba-gallery-grid.cols-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .ba-category-filter {
+        gap: 6px;
+        margin-bottom: 20px;
+    }
+
+    .ba-cat-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .ba-subcategory-filter {
+        padding: 12px;
+        margin-bottom: 16px;
+    }
+
+    .ba-subcat-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    /* 3차/4차 카테고리 모바일 반응형 */
+    .ba-third-level-filter {
+        margin-left: 10px; /* 모바일에서는 들여쓰기 줄임 */
+        padding: 10px 12px;
+    }
+
+    .ba-fourth-level-filter {
+        margin-left: 20px; /* 모바일에서는 들여쓰기 줄임 */
+        padding: 8px 10px;
+    }
+
+    .ba-third-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    .ba-fourth-btn {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+
+    .ba-item-title {
+        font-size: 14px;
+        padding: 12px 16px;
+    }
+
+    .ba-direction-tabs {
+        padding: 4px;
+        gap: 6px;
+        bottom: 12px;
+    }
+
+    .ba-dir-tab {
+        padding: 6px 16px;
+        font-size: 12px;
+    }
+
+    .ba-image-label {
+        padding: 4px 10px;
+        font-size: 11px;
+    }
+
+    .ba-login-content {
+        padding: 16px;
+    }
+
+    .ba-lock-icon {
+        font-size: 36px;
+        margin-bottom: 12px;
+    }
+
+    .ba-login-content p {
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+
+    .ba-login-btn {
+        padding: 10px 24px;
+        font-size: 13px;
+    }
+
+    .ba-pagination a,
+    .ba-pagination span {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}
+
+/* 1열 레이아웃 특별 처리 */
+.ba-gallery-grid.cols-1 .ba-images {
+    max-width: 100%;
+}
+
+.ba-gallery-grid.cols-1 .ba-image {
+    aspect-ratio: 16/9;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ba-gallery-item {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+/* 이미지 로딩 효과 */
+.ba-img {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.ba-img[src] {
+    animation: none;
+    background: transparent;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}

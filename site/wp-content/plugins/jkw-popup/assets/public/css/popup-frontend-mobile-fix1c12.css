@@ -1,0 +1,98 @@
+/* JK위드미팝업 모바일 전용 수정 CSS */
+
+/* 오버레이 확실히 표시 */
+.jkw-popup-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    z-index: 99998 !important;
+}
+
+/* 모든 팝업 기본 스타일 - 강제 중앙 정렬 */
+.jkw-popup {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    -webkit-transform: translate(-50%, -50%) !important;
+    -moz-transform: translate(-50%, -50%) !important;
+    -ms-transform: translate(-50%, -50%) !important;
+    -o-transform: translate(-50%, -50%) !important;
+    z-index: 99999 !important;
+    margin: 0 !important;
+}
+
+/* 모바일 전용 스타일 */
+@media screen and (max-width: 991px) {
+    .jkw-popup {
+        width: 90% !important;
+        max-width: 500px !important;
+        max-height: 85vh !important;
+        overflow-y: auto !important;
+    }
+    
+    /* 일반형 팝업 모바일 스타일 */
+    .jkw-popup-general {
+        padding: 20px !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 10px !important;
+    }
+    
+    .jkw-popup-general .jkw-general-container {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+    
+    .jkw-popup-general .jkw-general-item {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+    
+    /* 팝업 이미지 모바일 최적화 */
+    .jkw-popup img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+}
+
+/* 초소형 모바일 */
+@media screen and (max-width: 480px) {
+    .jkw-popup {
+        width: 95% !important;
+        max-width: none !important;
+        padding: 10px !important;
+    }
+    
+    .jkw-popup-footer button,
+    .jkw-popup-footer a {
+        font-size: 12px !important;
+        padding: 10px !important;
+    }
+}
+
+/* 디버깅용 표시 도우미 */
+.jkw-popup.debug-show {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    border: 3px solid red !important;
+}
+
+/* 팝업이 화면 밖으로 나가지 않도록 보장 */
+@media screen and (max-width: 991px) {
+    body.jkw-popup-open {
+        overflow: hidden !important;
+        position: fixed !important;
+        width: 100% !important;
+    }
+}

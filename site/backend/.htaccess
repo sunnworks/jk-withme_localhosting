@@ -1,0 +1,16 @@
+# 민감 파일 직접 접근 차단 (Apache)
+<FilesMatch "\.(sql|md)$">
+    Require all denied
+</FilesMatch>
+<Files "config.php">
+    Require all denied
+</Files>
+<Files "config.sample.php">
+    Require all denied
+</Files>
+<Files "db.php">
+    Require all denied
+</Files>
+
+# 디렉터리 목록 노출 차단
+Options -Indexes

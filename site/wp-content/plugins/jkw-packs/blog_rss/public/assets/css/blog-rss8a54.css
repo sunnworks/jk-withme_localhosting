@@ -1,0 +1,631 @@
+/**
+ * JK위드미 RSS Feed - Public Styles
+ * 6가지 스킨: basic, media-left, card-grid, compact, minimalist, card-hover
+ */
+
+/* ===== 공통 스타일 ===== */
+.jkw-rss-feed {
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #1e293b;
+}
+
+.jkw-rss-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #94a3b8;
+    font-size: 16px;
+}
+
+/* ===== Basic Skin ===== */
+.jkw-rss-skin-basic .jkw-rss-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.jkw-rss-skin-basic .jkw-rss-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.jkw-rss-skin-basic .jkw-rss-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.jkw-rss-skin-basic .jkw-rss-thumbnail {
+    flex-shrink: 0;
+    width: 200px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.jkw-rss-skin-basic .jkw-rss-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.jkw-rss-skin-basic .jkw-rss-thumbnail:hover img {
+    transform: scale(1.05);
+}
+
+.jkw-rss-skin-basic .jkw-rss-content {
+    flex: 1;
+}
+
+.jkw-rss-skin-basic .jkw-rss-title {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.jkw-rss-skin-basic .jkw-rss-title a {
+    color: #1e293b;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.jkw-rss-skin-basic .jkw-rss-title a:hover {
+    color: #3b82f6;
+}
+
+.jkw-rss-skin-basic .jkw-rss-meta {
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.jkw-rss-skin-basic .jkw-rss-category {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+    height: 24px;
+}
+
+.jkw-rss-skin-basic .jkw-rss-category svg {
+    flex-shrink: 0;
+    vertical-align: middle;
+    margin-right: 0;
+}
+
+.jkw-rss-skin-basic .jkw-rss-meta time {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    line-height: 1.2;
+}
+
+.jkw-rss-skin-basic .jkw-rss-meta time svg {
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+.jkw-rss-skin-basic .jkw-rss-summary {
+    margin-bottom: 12px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #64748b;
+}
+
+.jkw-rss-skin-basic .jkw-rss-readmore a {
+    color: #3b82f6;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.jkw-rss-skin-basic .jkw-rss-readmore a:hover {
+    color: #2563eb;
+}
+
+/* ===== Card Grid Skin ===== */
+.jkw-rss-skin-card-grid .jkw-rss-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.jkw-rss-skin-card-grid .jkw-rss-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.jkw-rss-skin-card-grid .jkw-rss-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+}
+
+.jkw-rss-skin-card-grid .jkw-rss-card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.jkw-rss-skin-card-grid .jkw-rss-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.jkw-rss-skin-card-grid .jkw-rss-card:hover .jkw-rss-card-image img {
+    transform: scale(1.1);
+}
+
+.jkw-rss-skin-card-grid .jkw-rss-card-body {
+    padding: 20px;
+}
+
+.jkw-rss-skin-card-grid .jkw-rss-card-title {
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.jkw-rss-skin-card-grid .jkw-rss-card-title a {
+    color: #1e293b;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.jkw-rss-skin-card-grid .jkw-rss-card-title a:hover {
+    color: #3b82f6;
+}
+
+.jkw-rss-skin-card-grid .jkw-rss-card-summary {
+    margin-bottom: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #64748b;
+}
+
+.jkw-rss-skin-card-grid .jkw-rss-card-footer {
+    padding-top: 12px;
+    border-top: 1px solid #f1f5f9;
+    font-size: 13px;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.jkw-rss-skin-card-grid .jkw-rss-card-category {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.2;
+    height: 20px;
+}
+
+/* ===== Media Left Skin ===== */
+.jkw-rss-skin-media-left .jkw-rss-media-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.jkw-rss-skin-media-left .jkw-rss-media-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.jkw-rss-skin-media-left .jkw-rss-media-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.jkw-rss-skin-media-left .jkw-rss-media-left {
+    flex-shrink: 0;
+    width: 120px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.jkw-rss-skin-media-left .jkw-rss-media-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.jkw-rss-skin-media-left .jkw-rss-media-body {
+    flex: 1;
+}
+
+.jkw-rss-skin-media-left .jkw-rss-media-title {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.jkw-rss-skin-media-left .jkw-rss-media-title a {
+    color: #1e293b;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.jkw-rss-skin-media-left .jkw-rss-media-title a:hover {
+    color: #3b82f6;
+}
+
+.jkw-rss-skin-media-left .jkw-rss-media-meta {
+    margin-bottom: 8px;
+    font-size: 12px;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.jkw-rss-skin-media-left .jkw-rss-media-category {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.2;
+    height: 20px;
+}
+
+.jkw-rss-skin-media-left .jkw-rss-media-summary {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #64748b;
+}
+
+/* ===== Compact Skin ===== */
+.jkw-rss-skin-compact .jkw-rss-compact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.jkw-rss-skin-compact .jkw-rss-compact-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.jkw-rss-skin-compact .jkw-rss-compact-item:last-child {
+    border-bottom: none;
+}
+
+.jkw-rss-skin-compact .jkw-rss-compact-thumb {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.jkw-rss-skin-compact .jkw-rss-compact-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.jkw-rss-skin-compact .jkw-rss-compact-content {
+    flex: 1;
+}
+
+.jkw-rss-skin-compact .jkw-rss-compact-title {
+    margin: 0 0 4px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.jkw-rss-skin-compact .jkw-rss-compact-title a {
+    color: #1e293b;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.jkw-rss-skin-compact .jkw-rss-compact-title a:hover {
+    color: #3b82f6;
+}
+
+.jkw-rss-skin-compact .jkw-rss-compact-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.jkw-rss-skin-compact .jkw-rss-compact-category {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.2;
+    height: 18px;
+}
+
+.jkw-rss-skin-compact .jkw-rss-compact-date {
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    color: #94a3b8;
+    height: 18px;
+    line-height: 1.2;
+}
+
+/* ===== Minimalist Skin ===== */
+.jkw-rss-skin-minimalist .jkw-rss-minimalist-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.jkw-rss-skin-minimalist .jkw-rss-minimalist-item {
+    padding: 20px 0;
+}
+
+.jkw-rss-skin-minimalist .jkw-rss-minimalist-title {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.jkw-rss-skin-minimalist .jkw-rss-minimalist-title a {
+    color: #1e293b;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.jkw-rss-skin-minimalist .jkw-rss-minimalist-title a:hover {
+    color: #3b82f6;
+}
+
+.jkw-rss-skin-minimalist .jkw-rss-minimalist-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.jkw-rss-skin-minimalist .jkw-rss-minimalist-category {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.2;
+    height: 20px;
+}
+
+.jkw-rss-skin-minimalist .jkw-rss-minimalist-date {
+    display: inline-flex;
+    align-items: center;
+    font-size: 13px;
+    color: #94a3b8;
+    height: 20px;
+    line-height: 1.2;
+}
+
+.jkw-rss-skin-minimalist .jkw-rss-minimalist-summary {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #64748b;
+}
+
+.jkw-rss-skin-minimalist .jkw-rss-minimalist-divider {
+    margin-top: 20px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.jkw-rss-skin-minimalist .jkw-rss-minimalist-item:last-child .jkw-rss-minimalist-divider {
+    display: none;
+}
+
+/* ===== Card Hover Skin ===== */
+.jkw-rss-skin-card-hover {
+    /* CSS 변수로 사용자 커스터마이즈 가능 */
+    --card-bg: #ffffff;
+    --card-hover-bg: #f8f9fa;
+    --card-border: #e2e8f0;
+    --card-hover-border: #cbd5e1;
+    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --card-hover-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    --card-padding: 24px;
+    --card-radius: 12px;
+    --card-gap: 20px;
+    --category-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --title-color: #1e293b;
+    --title-hover-color: #3b82f6;
+    --summary-color: #94a3b8;
+    --meta-color: #cbd5e1;
+    --transition-speed: 0.3s;
+}
+
+.jkw-rss-skin-card-hover .jkw-rss-hover-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--card-gap);
+}
+
+.jkw-rss-skin-card-hover .jkw-rss-hover-card {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--card-radius);
+    transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--card-shadow);
+}
+
+.jkw-rss-skin-card-hover .jkw-rss-hover-card:hover {
+    background: var(--card-hover-bg);
+    border-color: var(--card-hover-border);
+    box-shadow: var(--card-hover-shadow);
+    transform: translateY(-4px);
+}
+
+.jkw-rss-skin-card-hover .jkw-rss-hover-link {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: var(--card-padding);
+    text-decoration: none;
+    color: inherit;
+}
+
+.jkw-rss-skin-card-hover .jkw-rss-hover-content {
+    flex: 1;
+    min-width: 0; /* flex 컨텐츠 오버플로우 방지 */
+}
+
+.jkw-rss-skin-card-hover .jkw-rss-hover-category {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    background: var(--category-bg);
+    color: #ffffff;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.2;
+    height: 22px;
+    margin-bottom: 10px;
+}
+
+.jkw-rss-skin-card-hover .jkw-rss-hover-title {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--title-color);
+    transition: color var(--transition-speed);
+
+    /* 2줄 말줄임 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.jkw-rss-skin-card-hover .jkw-rss-hover-card:hover .jkw-rss-hover-title {
+    color: var(--title-hover-color);
+}
+
+.jkw-rss-skin-card-hover .jkw-rss-hover-summary {
+    margin: 8px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--summary-color);
+
+    /* 2줄 말줄임 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.jkw-rss-skin-card-hover .jkw-rss-hover-meta {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--meta-color);
+    height: 22px;
+    line-height: 1.2;
+}
+
+.jkw-rss-skin-card-hover .jkw-rss-hover-arrow {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: var(--meta-color);
+    transition: transform var(--transition-speed), color var(--transition-speed);
+    margin-top: 4px;
+}
+
+.jkw-rss-skin-card-hover .jkw-rss-hover-card:hover .jkw-rss-hover-arrow {
+    color: var(--title-hover-color);
+    transform: translateX(4px);
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 768px) {
+    /* Basic Skin */
+    .jkw-rss-skin-basic .jkw-rss-item {
+        flex-direction: column;
+    }
+
+    .jkw-rss-skin-basic .jkw-rss-thumbnail {
+        width: 100%;
+        height: 200px;
+    }
+
+    /* Card Grid */
+    .jkw-rss-skin-card-grid .jkw-rss-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Media Left */
+    .jkw-rss-skin-media-left .jkw-rss-media-left {
+        width: 100px;
+        height: 75px;
+    }
+
+    /* Card Hover */
+    .jkw-rss-skin-card-hover .jkw-rss-hover-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .jkw-rss-skin-card-hover {
+        --card-padding: 20px;
+        --card-gap: 16px;
+    }
+}

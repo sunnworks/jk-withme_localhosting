@@ -1,0 +1,411 @@
+/* 공통 스타일 */
+.jkwf-form {
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
+
+.jkwf-form * {
+    box-sizing: border-box;
+}
+
+.jkwf-field {
+    margin-bottom: 20px;
+}
+
+.jkwf-field label,
+.jkwf-field-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.jkwf-required {
+    color: #d63638;
+    font-weight: normal;
+}
+
+.jkwf-field input[type="text"],
+.jkwf-field input[type="email"],
+.jkwf-field input[type="tel"],
+.jkwf-field input[type="date"],
+.jkwf-field input[type="file"],
+.jkwf-field textarea,
+.jkwf-field select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #fff;
+}
+
+.jkwf-field input[type="text"]:focus,
+.jkwf-field input[type="email"]:focus,
+.jkwf-field input[type="tel"]:focus,
+.jkwf-field input[type="date"]:focus,
+.jkwf-field textarea:focus,
+.jkwf-field select:focus {
+    outline: none;
+    border-color: #00003f;
+    box-shadow: 0 0 0 3px rgba(0, 0, 63, 0.1);
+}
+
+.jkwf-field textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* 라디오/체크박스 그룹 */
+.jkwf-radio-group,
+.jkwf-checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.jkwf-radio-group label,
+.jkwf-checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.jkwf-radio-group input[type="radio"],
+.jkwf-checkbox-group input[type="checkbox"] {
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* 약관 필드 */
+.jkwf-terms-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.jkwf-terms-field label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.jkwf-terms-field input[type="checkbox"] {
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    margin-top:0;
+}
+
+.jkwf-terms-detail {
+    color: #afafcf;
+    text-decoration: underline;
+    font-size: 13px;
+}
+
+.jkwf-terms-detail:hover {
+    color: #33357a;
+}
+
+/* HTML 콘텐츠 */
+.jkwf-html-content {
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+/* 필드 설명 */
+.jkwf-field-description {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* 제출 버튼 */
+.jkwf-submit-wrap {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.jkwf-submit-btn {
+    background: #00003f;
+    color: #fff;
+    border: none;
+    padding: 14px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.jkwf-submit-btn:hover {
+    background: #33357a;
+    transform: translateY(-1px);
+}
+
+.jkwf-submit-btn:active {
+    transform: translateY(0);
+}
+
+.jkwf-submit-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 에러 스타일 */
+.jkwf-field.jkwf-error input,
+.jkwf-field.jkwf-error textarea,
+.jkwf-field.jkwf-error select {
+    border-color: #d63638;
+}
+
+.jkwf-error-message {
+    color: #d63638;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* 기본형 스킨 (default) */
+.jkwf-skin-default {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.jkwf-skin-default .jkwf-form-fields-wrap {
+    display: block;
+}
+
+.jkwf-skin-default .jkwf-submit-btn {
+    width: 100%;
+}
+
+/* 가로형 스킨 (horizontal) - 완전 재작성 */
+.jkwf-skin-horizontal {
+    max-width: 100%;
+}
+
+/* 가로형 메인 컨테이너 */
+.jkwf-skin-horizontal .jkwf-horizontal-row {
+    display: flex !important;
+    gap: 5px;
+    align-items: flex-end;
+    width: 100%;
+}
+
+/* 가로형 필드 컨테이너 */
+.jkwf-skin-horizontal .jkwf-form-fields-wrap {
+    flex: 1;
+    display: flex !important;
+    gap: 5px;
+    align-items: flex-end;
+}
+
+/* 가로형 필드 */
+.jkwf-skin-horizontal .jkwf-field {
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 0;
+    display: block !important; /* 모든 필드 표시 */
+}
+
+/* 가로형 라벨 */
+.jkwf-skin-horizontal .jkwf-field label,
+.jkwf-skin-horizontal .jkwf-field-label {
+    font-size: 13px;
+    color:#fff;
+}
+
+/* 가로형 입력 필드 */
+.jkwf-skin-horizontal .jkwf-field input[type="text"],
+.jkwf-skin-horizontal .jkwf-field input[type="email"],
+.jkwf-skin-horizontal .jkwf-field input[type="tel"],
+.jkwf-skin-horizontal .jkwf-field input[type="date"],
+.jkwf-skin-horizontal .jkwf-field select,
+.jkwf-skin-horizontal .jkwf-field textarea {
+    padding: 10px 14px;
+    font-size: 15px;
+}
+
+/* 가로형 텍스트에어리어 특별 처리 */
+.jkwf-skin-horizontal .jkwf-field textarea {
+    min-height: 44px;
+    resize: none;
+}
+
+/* 가로형 제출 버튼 */
+.jkwf-skin-horizontal .jkwf-submit-wrap {
+    margin-top: 0;
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-end;
+}
+
+.jkwf-skin-horizontal .jkwf-submit-btn {
+    padding: 10px 30px;
+    font-size: 16px;
+    white-space: nowrap;
+    height: 44px;
+}
+
+/* 가로형 약관동의 */
+.jkwf-skin-horizontal .jkwf-terms-row {
+    margin-top: 5px;
+    text-align: center;
+}
+
+/* 가로형 체크박스/라디오 그룹 */
+.jkwf-skin-horizontal .jkwf-radio-group,
+.jkwf-skin-horizontal .jkwf-checkbox-group {
+    flex-direction: row;
+    gap: 5px;
+}
+
+/* 반응형 처리 */
+@media (max-width: 768px) {
+    .jkwf-skin-horizontal .jkwf-horizontal-row {
+        align-items: stretch;
+    }
+    
+    .jkwf-skin-horizontal .jkwf-form-fields-wrap {
+    }
+    
+    .jkwf-skin-horizontal .jkwf-field {
+    }
+    
+    .jkwf-skin-horizontal .jkwf-field textarea {
+        min-height: 120px;
+    }
+    
+    .jkwf-skin-horizontal .jkwf-submit-wrap {
+    }
+    
+    .jkwf-skin-horizontal .jkwf-submit-btn {
+        width: 100%;
+        padding: 14px 30px;
+    }
+}
+
+/* 팝업 (프론트엔드용) */
+#jkwf-terms-popup-front {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+}
+
+#jkwf-terms-popup-front .jkwf-popup-content {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    margin: 50px auto;
+    background: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+}
+
+#jkwf-terms-popup-front .jkwf-popup-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#jkwf-terms-popup-front .jkwf-popup-close:hover {
+    color: #000;
+}
+
+#jkwf-terms-popup-front .jkwf-terms-title {
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #00003f;
+    color: #00003f;
+}
+
+#jkwf-terms-popup-front .jkwf-terms-content {
+    line-height: 1.6;
+    color: #333;
+}
+
+/* 애니메이션 */
+.jkwf-form input,
+.jkwf-form textarea,
+.jkwf-form select,
+.jkwf-form button {
+    transition: all 0.2s ease;
+}
+
+/* 로딩 상태 */
+.jkwf-form.jkwf-loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.jkwf-form.jkwf-loading .jkwf-submit-btn:after {
+    content: '...';
+    animation: jkwf-loading 1s infinite;
+}
+
+@keyframes jkwf-loading {
+    0% { content: '.'; }
+    33% { content: '..'; }
+    66% { content: '...'; }
+}
+
+/* 스크롤 방지 */
+body.jkwf-no-scroll {
+    overflow: hidden !important;
+}
+
+/* 라벨이 없는 필드 스타일 조정 */
+.jkwf-field > input:first-child,
+.jkwf-field > textarea:first-child,
+.jkwf-field > select:first-child {
+    margin-top: 0;
+}
+
+/* 가로형에서 라벨이 없는 필드 */
+.jkwf-skin-horizontal .jkwf-field > input:first-child,
+.jkwf-skin-horizontal .jkwf-field > textarea:first-child,
+.jkwf-skin-horizontal .jkwf-field > select:first-child {
+    margin-top: 0;
+}
+
+/* 전화번호 필드 스타일 */
+.jkwf-field input[type="tel"] {
+    font-family: monospace;
+    letter-spacing: 0.5px;
+}
+
+/* 전화번호 필드 포커스 시 */
+.jkwf-field input[type="tel"]:focus {
+    background-color: #fafafa;
+}

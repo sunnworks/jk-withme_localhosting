@@ -1,0 +1,623 @@
+/* JK위드미팝업 프론트엔드 스타일 */
+
+/* CSS 변수 정의 */
+:root {
+    --jkw-popup-padding: 20px;
+    --jkw-popup-gap: 10px;
+    --jkw-popup-radius: 10px;
+    --jkw-popup-bg: #ffffff;
+    --jkw-popup-border-width: 0px;
+    --jkw-popup-border-color: #dddddd;
+    --jkw-popup-text: #333333;
+    --jkw-popup-button-bg: #333333;
+    --jkw-popup-button-text: #ffffff;
+    --jkw-popup-button-hover: #555555;
+    --jkw-popup-font-size: 14px;
+    --jkw-popup-font-weight: normal;
+    --jkw-popup-line-height: 1.5;
+}
+
+/* 오버레이 */
+.jkw-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99998;
+    display: none;
+}
+
+/* 디바이스별 표시 제어 - 수정됨 */
+/* 기본적으로 모든 팝업은 숨김 상태로 시작 */
+.jkw-popup {
+    display: none;
+}
+
+/* JavaScript가 표시할 때만 보이도록 함 */
+.jkw-popup.jkw-popup-active {
+    display: block !important;
+}
+
+/* 기본 팝업 스타일 */
+.jkw-popup {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    background: var(--jkw-popup-bg);
+    padding: var(--jkw-popup-padding);
+    border-radius: var(--jkw-popup-radius);
+    border: var(--jkw-popup-border-width) solid var(--jkw-popup-border-color);
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    z-index: 99999 !important;
+    max-height: 90vh;
+    overflow-y: auto;
+    color: var(--jkw-popup-text);
+    font-size: var(--jkw-popup-font-size);
+    font-weight: var(--jkw-popup-font-weight);
+    line-height: var(--jkw-popup-line-height);
+}
+
+/* 커스텀 CSS 변수 적용 */
+.jkw-popup[style*="--popup-padding"] {
+    padding: var(--popup-padding) !important;
+}
+
+.jkw-popup[style*="--popup-radius"] {
+    border-radius: var(--popup-radius) !important;
+}
+
+.jkw-popup[style*="--popup-bg"] {
+    background: var(--popup-bg) !important;
+}
+
+.jkw-popup[style*="--popup-text"] {
+    color: var(--popup-text) !important;
+}
+
+.jkw-popup[style*="--popup-font-size"] {
+    font-size: var(--popup-font-size) !important;
+}
+
+.jkw-popup[style*="--popup-font-weight"] {
+    font-weight: var(--popup-font-weight) !important;
+}
+
+.jkw-popup[style*="--popup-line-height"] {
+    line-height: var(--popup-line-height) !important;
+}
+
+.jkw-popup[style*="--popup-border-width"] {
+    border-width: var(--popup-border-width) !important;
+    border-style: solid;
+}
+
+.jkw-popup[style*="--popup-border-color"] {
+    border-color: var(--popup-border-color) !important;
+}
+
+/* 이미지 스타일 */
+.jkw-popup img,
+.jkw-popup-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.jkw-popup a {
+    display: block;
+    line-height: 0;
+}
+
+/* 슬라이드형 팝업 */
+.jkw-popup-slide .jkw-slide-container {
+    position: relative;
+    border-radius: var(--jkw-popup-radius) var(--jkw-popup-radius) 0 0;
+    overflow: hidden;
+}
+
+.jkw-popup-slide .jkw-slide {
+    display: none;
+}
+
+.jkw-popup-slide .jkw-slide:first-child {
+    display: block;
+}
+
+/* 슬라이드 컨트롤 */
+.jkw-slide-controls {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.jkw-popup button:hover {
+    border: none;
+}
+
+.jkw-slide-button {
+    flex: 1;
+    padding: 12px 10px;
+    background: #f8f8f8;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #999;
+    font-size: 14px;
+    border-radius: var(--jkw-popup-radius, 4px); 
+}
+
+.jkw-slide-button:hover {
+    background: #e8e8e8;
+}
+
+.jkw-slide-button.active {
+    background: #333;
+    color: #fff;
+}
+
+/* 커스텀 슬라이드 탭 스타일 */
+.jkw-popup[style*="--popup-tab-bg"] .jkw-slide-button,
+.jkw-popup[style*="--popup-tab-text"] .jkw-slide-button {
+    background: var(--popup-tab-bg, #f8f8f8);
+    color: var(--popup-tab-text, #999);
+}
+
+.jkw-popup[style*="--popup-tab-bg-hover"] .jkw-slide-button:hover,
+.jkw-popup[style*="--popup-tab-text-hover"] .jkw-slide-button:hover {
+    background: var(--popup-tab-bg-hover, #e8e8e8);
+    color: var(--popup-tab-text-hover, #666);
+}
+
+.jkw-popup[style*="--popup-tab-bg-active"] .jkw-slide-button.active,
+.jkw-popup[style*="--popup-tab-text-active"] .jkw-slide-button.active {
+    background: var(--popup-tab-bg-active, #333);
+    color: var(--popup-tab-text-active, #fff);
+}
+
+/* 커스텀 레이아웃 변수 */
+.jkw-popup[style*="--popup-tab-gap"] .jkw-slide-controls {
+    gap: var(--popup-tab-gap);
+}
+
+.jkw-popup[style*="--popup-tab-margin"] .jkw-slide-controls {
+    margin-bottom: var(--popup-tab-margin);
+}
+
+.jkw-popup[style*="--popup-footer-margin"] .jkw-popup-footer {
+    margin-top: var(--popup-footer-margin);
+}
+
+/* 일반형 팝업 */
+.jkw-popup-general {
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.jkw-general-container {
+    display: grid;
+    gap: var(--popup-gap, 10px);
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.jkw-general-item {
+    background: transparent;
+    border-radius: var(--jkw-popup-radius);
+    border: none;
+    overflow: hidden;
+    box-shadow: none;
+    position: relative;
+}
+
+/* 일반형 레이아웃 - 1줄 */
+.jkw-layout-1row .jkw-general-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    max-width: 900px;
+}
+
+/* 일반형 레이아웃 - 2줄 */
+.jkw-layout-2rows .jkw-general-container {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 900px;
+}
+
+/* 팝업 푸터 (버튼 영역) */
+.jkw-popup-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    margin-top: 15px;
+    padding: 0;
+    background: var(--jkw-popup-button-bg);
+    overflow: hidden;
+}
+
+.jkw-popup-slide .jkw-popup-footer {
+    margin: 0;
+    margin-top: 0;
+    padding: 0;
+    border-radius: 0 0 var(--jkw-popup-radius) var(--jkw-popup-radius);
+}
+
+.jkw-general-item .jkw-popup-footer {
+    margin: 0;
+    padding: 0;
+}
+
+/* 버튼 스타일 */
+.jkw-popup-footer button,
+.jkw-popup-footer a {
+    flex: 1;
+    padding: 12px 15px;
+    background: transparent;
+    border: none;
+    color: var(--jkw-popup-button-text);
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    position: relative;
+    margin: 0;
+    border-radius: 0;
+}
+
+.jkw-popup-footer button:not(:last-child),
+.jkw-popup-footer a:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.jkw-popup-footer button:hover,
+.jkw-popup-footer a:hover {
+    background: var(--jkw-popup-button-hover);
+    color: #fff !important;
+    border: none !important; /* 추가 */
+    outline: none !important; /* 추가 */
+}
+
+/* 자세히 보기 링크 특별 처리 */
+.jkw-popup-detail {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    line-height: normal !important;
+}
+
+.jkw-popup-detail:hover {
+    color: #fff !important;
+    text-decoration: none;
+    background: var(--jkw-popup-button-hover) !important;
+}
+
+/* 커스텀 CSS 변수 적용 */
+.jkw-popup[style*="--popup-button-bg"] .jkw-popup-footer,
+.jkw-popup-footer[style*="--popup-button-bg"] {
+    background: var(--popup-button-bg) !important;
+}
+
+.jkw-popup[style*="--popup-button-text"] .jkw-popup-footer button,
+.jkw-popup[style*="--popup-button-text"] .jkw-popup-footer a,
+.jkw-popup-footer button[style*="--popup-button-text"],
+.jkw-popup-footer a[style*="--popup-button-text"] {
+    color: var(--popup-button-text) !important;
+}
+
+.jkw-popup[style*="--popup-button-hover"] .jkw-popup-footer button:hover,
+.jkw-popup[style*="--popup-button-hover"] .jkw-popup-footer a:hover,
+.jkw-popup-footer button:hover[style*="--popup-button-hover"],
+.jkw-popup-footer a:hover[style*="--popup-button-hover"] {
+    background: var(--popup-button-hover) !important;
+    color: var(--popup-button-text-hover, #fff) !important;
+}
+
+/* 닫기 버튼만 있을 때 */
+.jkw-popup-close-only {
+    border-right: none !important;
+}
+
+/* 전체 닫기 버튼 - 하단만 사용 */
+.jkw-global-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.jkw-global-close-bottom-wrap {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.jkw-global-close-bottom {
+    padding: 12px 30px;
+    background: var(--jkw-popup-button-bg);
+    color: var(--jkw-popup-button-text);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.jkw-global-close-bottom:hover {
+    background: var(--jkw-popup-button-hover);
+}
+
+/* 디자인 프리셋 - 기본형 */
+.jkw-preset-default {
+    /* 기본값 사용 */
+}
+
+/* 디자인 프리셋 - 모던형 */
+.jkw-preset-modern {
+    --jkw-popup-padding: 0px;
+    --jkw-popup-radius: 0px;
+    --jkw-popup-bg: #ffffff;
+    --jkw-popup-text: #ccc;
+    --jkw-popup-button-bg: #000000;
+    --jkw-popup-button-text: #ffffff;
+    --jkw-popup-button-hover: #333333;
+    --jkw-popup-font-weight: 300;
+    --jkw-popup-line-height: 1.6;
+}
+
+/* 모던형 버튼 호버 색상 통일 */
+.jkw-preset-modern .jkw-popup-footer button:hover,
+.jkw-preset-modern .jkw-popup-footer a:hover {
+    background: var(--jkw-popup-button-hover, #333333) !important;
+    color: var(--jkw-popup-button-text-hover, #fff) !important;
+}
+
+.jkw-preset-modern .jkw-slide-controls {
+    gap: 0;
+    margin-bottom: 0;
+}
+
+.jkw-preset-modern .jkw-slide-button {
+    background: #f5f5f5;
+    color: #999;
+    border-radius: 0;
+}
+
+.jkw-preset-modern .jkw-slide-button.active {
+    background: #000;
+    color: #fff;
+    border: none;
+}
+
+/* 디자인 프리셋 - 미니멀형 */
+.jkw-preset-minimal {
+    --jkw-popup-padding: 30px;
+    --jkw-popup-radius: 0px;
+    --jkw-popup-border-width: 1px;
+    --jkw-popup-border-color: #e0e0e0;
+    --jkw-popup-bg: #ffffff;
+    --jkw-popup-text: #666666;
+    --jkw-popup-button-bg: transparent;
+    --jkw-popup-button-text: #666666;
+    --jkw-popup-button-hover: #000000;
+    --jkw-popup-font-size: 13px;
+    --jkw-popup-line-height: 1.8;
+    box-shadow: none;
+}
+
+.jkw-preset-minimal .jkw-popup-footer {
+    background: transparent;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 20px;
+    padding-top: 15px;
+}
+
+.jkw-preset-minimal .jkw-popup-footer button,
+.jkw-preset-minimal .jkw-popup-footer a {
+    color: #666;
+}
+
+.jkw-preset-minimal .jkw-popup-footer button:hover,
+.jkw-preset-minimal .jkw-popup-footer a:hover {
+    color: #fff;
+    background: #333;
+}
+
+.jkw-preset-minimal .jkw-slide-button {
+    background: transparent;
+    color: #999;
+    border: 1px solid #e0e0e0;
+}
+
+.jkw-preset-minimal .jkw-slide-button:hover {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+}
+
+.jkw-preset-minimal .jkw-slide-button.active {
+    background: #f5f5f5;
+    color: #000;
+    border-color: #666;
+}
+
+.jkw-preset-minimal .jkw-popup-overlay {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* 반응형 - 태블릿 */
+@media screen and (max-width: 991px) {
+    .jkw-popup {
+        position: fixed !important;
+        width: 90% !important;
+        max-width: 500px !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        margin: 0 !important;
+    }
+    
+    /* 모바일에서 일반형 팝업 겹침 처리 */
+    .jkw-popup-general {
+        padding: 20px !important;
+        background: var(--jkw-popup-bg) !important;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3) !important;
+        border: var(--jkw-popup-border-width) solid var(--jkw-popup-border-color) !important;
+        border-radius: var(--jkw-popup-radius) !important;
+    }
+    
+    .jkw-popup-general .jkw-general-container {
+        display: block !important;
+        gap: 0 !important;
+    }
+    
+    .jkw-popup-general .jkw-general-item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        background: transparent;
+        box-shadow: none;
+        border: none;
+    }
+    
+    .jkw-popup-general .jkw-general-item.active {
+        display: block !important;
+    }
+    
+    .jkw-popup-general .jkw-general-item:first-child {
+        display: block;
+    }
+    
+    .jkw-popup-footer {
+        flex-wrap: wrap;
+    }
+    
+    .jkw-popup-footer button,
+    .jkw-popup-footer a {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+    
+    .jkw-slide-controls {
+        flex-wrap: wrap;
+    }
+    
+    .jkw-slide-button {
+        min-width: calc(50% - 2.5px);
+        font-size: 13px;
+        padding: 10px 8px;
+    }
+    
+    /* 전체 닫기 버튼 숨김 (모바일) */
+    .jkw-global-close-bottom-wrap {
+        display: none;
+    }
+}
+
+/* 반응형 - 모바일 */
+@media screen and (max-width: 480px) {
+    .jkw-popup {
+        position: fixed !important;
+        width: 95% !important;
+        padding: 15px;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        margin: 0 !important;
+    }
+    
+    .jkw-preset-minimal {
+        --jkw-popup-padding: 20px;
+    }
+    
+    .jkw-popup-footer button,
+    .jkw-popup-footer a {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+    
+    .jkw-slide-button {
+        font-size: 12px;
+        padding: 8px 5px;
+    }
+}
+
+/* 스크롤바 스타일 */
+.jkw-popup::-webkit-scrollbar {
+    width: 8px;
+}
+
+.jkw-popup::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.jkw-popup::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.jkw-popup::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* 애니메이션 */
+@keyframes jkwFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes jkwFadeOut {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -52%);
+    }
+}
+
+/* 접근성 */
+.jkw-popup:focus-visible,
+.jkw-popup button:focus-visible,
+.jkw-popup a:focus-visible {
+    outline: 2px solid #2271b1;
+    outline-offset: 2px;
+}
+
+/* 프린트 시 숨김 */
+@media print {
+    .jkw-popup,
+    .jkw-popup-overlay {
+        display: none !important;
+    }
+}
+
+/* 디버깅 도우미 클래스 */
+.jkw-debug-visible {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    border: 2px solid red !important;
+}
+
+.jkw-debug-info::before {
+    content: attr(data-debug);
+    position: absolute;
+    top: -20px;
+    left: 0;
+    background: red;
+    color: white;
+    padding: 2px 5px;
+    font-size: 10px;
+    z-index: 100000;
+}

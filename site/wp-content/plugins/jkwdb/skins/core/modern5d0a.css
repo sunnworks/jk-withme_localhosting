@@ -1,0 +1,188 @@
+/* 모던형 스킨 */
+.jkwf-skin-modern {
+    max-width: 100%;
+    margin: 0;
+    position: relative;
+}
+
+/* 배경 그라데이션 효과 */
+.jkwf-skin-modern::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    right: -50px;
+    bottom: -50px;
+    background: linear-gradient(135deg, rgba(0,0,63,0.03) 0%, rgba(0,0,63,0) 100%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.jkwf-skin-modern .jkwf-form-fields-wrap {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* 전체 너비 필드 */
+.jkwf-skin-modern .jkwf-field-textarea,
+.jkwf-skin-modern .jkwf-field-html,
+.jkwf-skin-modern .jkwf-field-terms {
+    grid-column: 1 / -1;
+}
+
+/* 필드 스타일 */
+.jkwf-skin-modern .jkwf-field {
+    margin-bottom: 0;
+    position: relative;
+}
+
+/* 플로팅 라벨 효과 */
+.jkwf-skin-modern .jkwf-field label,
+.jkwf-skin-modern .jkwf-field-label {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 16px;
+    color: #666;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    background: #fff;
+    padding: 0 5px;
+    z-index: 1;
+}
+
+.jkwf-skin-modern .jkwf-field input:focus + label,
+.jkwf-skin-modern .jkwf-field input:not(:placeholder-shown) + label,
+.jkwf-skin-modern .jkwf-field textarea:focus + label,
+.jkwf-skin-modern .jkwf-field textarea:not(:placeholder-shown) + label,
+.jkwf-skin-modern .jkwf-field select:focus + label,
+.jkwf-skin-modern .jkwf-field select:valid + label {
+    top: -10px;
+    left: 12px;
+    font-size: 14px;
+    color: #00003f;
+}
+
+/* 입력 필드 */
+.jkwf-skin-modern .jkwf-field input[type="text"],
+.jkwf-skin-modern .jkwf-field input[type="email"],
+.jkwf-skin-modern .jkwf-field input[type="tel"],
+.jkwf-skin-modern .jkwf-field input[type="date"],
+.jkwf-skin-modern .jkwf-field textarea,
+.jkwf-skin-modern .jkwf-field select {
+    padding: 20px 16px 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.jkwf-skin-modern .jkwf-field input:focus,
+.jkwf-skin-modern .jkwf-field textarea:focus,
+.jkwf-skin-modern .jkwf-field select:focus {
+    border-color: #00003f;
+    box-shadow: 0 4px 20px rgba(0, 0, 63, 0.1);
+    transform: translateY(-2px);
+}
+
+/* 체크박스/라디오 그룹 스타일 */
+.jkwf-skin-modern .jkwf-radio-group,
+.jkwf-skin-modern .jkwf-checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.jkwf-skin-modern .jkwf-radio-group label,
+.jkwf-skin-modern .jkwf-checkbox-group label {
+    position: static;
+    background: #f8f9fa;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.jkwf-skin-modern .jkwf-radio-group label:hover,
+.jkwf-skin-modern .jkwf-checkbox-group label:hover {
+    border-color: #00003f;
+    background: #fff;
+}
+
+.jkwf-skin-modern .jkwf-radio-group input:checked + label,
+.jkwf-skin-modern .jkwf-checkbox-group input:checked + label {
+    background: #00003f;
+    color: #fff;
+}
+
+/* 약관동의 스타일 */
+.jkwf-skin-modern .jkwf-terms-field {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* 제출 버튼 */
+.jkwf-skin-modern .jkwf-submit-wrap {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.jkwf-skin-modern .jkwf-submit-btn {
+    width: 100%;
+    max-width: 400px;
+    padding: 18px 40px;
+    font-size: 18px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #00003f 0%, #33357a 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 63, 0.3);
+    transition: all 0.3s ease;
+}
+
+.jkwf-skin-modern .jkwf-submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 30px rgba(0, 0, 63, 0.4);
+}
+
+/* 애니메이션 효과 */
+.jkwf-skin-modern .jkwf-field {
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
+}
+
+.jkwf-skin-modern .jkwf-field:nth-child(1) { animation-delay: 0.1s; }
+.jkwf-skin-modern .jkwf-field:nth-child(2) { animation-delay: 0.2s; }
+.jkwf-skin-modern .jkwf-field:nth-child(3) { animation-delay: 0.3s; }
+.jkwf-skin-modern .jkwf-field:nth-child(4) { animation-delay: 0.4s; }
+.jkwf-skin-modern .jkwf-field:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .jkwf-skin-modern .jkwf-form-fields-wrap {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .jkwf-skin-modern .jkwf-submit-btn {
+        width: 100%;
+        max-width: none;
+    }
+}

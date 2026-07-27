@@ -1,0 +1,146 @@
+/* Elegant 스킨 */
+.jkwf-skin-elegant {
+    max-width: 100%;
+    margin: 0;
+}
+
+/* 제목 스타일 */
+
+.jkwf-skin-elegant .jkwf-form-fields-wrap {
+    display: block;
+}
+
+/* 필드 스타일 */
+.jkwf-skin-elegant .jkwf-field {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+
+.jkwf-skin-elegant .jkwf-field:last-child::after {
+    display: none;
+}
+
+/* 라벨 스타일 */
+.jkwf-skin-elegant .jkwf-field label,
+.jkwf-skin-elegant .jkwf-field-label {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #00003f;
+    margin-bottom: 12px;
+}
+
+/* 입력 필드 스타일 */
+.jkwf-skin-elegant .jkwf-field input[type="text"],
+.jkwf-skin-elegant .jkwf-field input[type="email"],
+.jkwf-skin-elegant .jkwf-field input[type="tel"],
+.jkwf-skin-elegant .jkwf-field input[type="date"],
+.jkwf-skin-elegant .jkwf-field textarea,
+.jkwf-skin-elegant .jkwf-field select {
+    padding: 0px;
+    border: none;
+    border-bottom: 2px solid #e0e0e0;
+    border-radius: 0;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.jkwf-skin-elegant .jkwf-field input:focus,
+.jkwf-skin-elegant .jkwf-field textarea:focus,
+.jkwf-skin-elegant .jkwf-field select:focus {
+    border-bottom-color: #00003f;
+    box-shadow: none;
+}
+
+/* 체크박스/라디오 스타일 */
+.jkwf-skin-elegant .jkwf-radio-group label,
+.jkwf-skin-elegant .jkwf-checkbox-group label {
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.jkwf-skin-elegant .jkwf-radio-group input[type="radio"],
+.jkwf-skin-elegant .jkwf-checkbox-group input[type="checkbox"] {
+    margin-right: 12px;
+    transform: scale(1.2);
+}
+
+/* 약관동의 스타일 */
+.jkwf-skin-elegant .jkwf-terms-field {
+
+}
+
+/* 제출 버튼 */
+.jkwf-skin-elegant .jkwf-submit-wrap {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.jkwf-skin-elegant .jkwf-submit-btn {
+    background: transparent;
+    color: #00003f;
+    border: 1px solid #00003f;
+    padding: 15px 60px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    width:100%;
+}
+
+.jkwf-skin-elegant .jkwf-submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #00003f;
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.jkwf-skin-elegant .jkwf-submit-btn:hover {
+    color: #fff;
+}
+
+.jkwf-skin-elegant .jkwf-submit-btn:hover::before {
+    left: 0;
+}
+
+/* 애니메이션 */
+.jkwf-skin-elegant .jkwf-field {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: elegantFadeIn 0.8s ease forwards;
+}
+
+.jkwf-skin-elegant .jkwf-field:nth-child(1) { animation-delay: 0.1s; }
+.jkwf-skin-elegant .jkwf-field:nth-child(2) { animation-delay: 0.2s; }
+.jkwf-skin-elegant .jkwf-field:nth-child(3) { animation-delay: 0.3s; }
+.jkwf-skin-elegant .jkwf-field:nth-child(4) { animation-delay: 0.4s; }
+.jkwf-skin-elegant .jkwf-field:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes elegantFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .jkwf-skin-elegant .jkwf-field {
+        margin-bottom: 25px;
+    }
+    
+    .jkwf-skin-elegant .jkwf-submit-btn {
+        width: 100%;
+        padding: 15px 40px;
+    }
+}
