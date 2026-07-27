@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>검색 - JK위드미 성형외과 피부과</title>
+<link rel="icon" href="/wp-content/uploads/2025/12/cropped-jk-32x32.png" sizes="32x32">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Pretendard","Noto Sans KR",-apple-system,sans-serif;color:#222;background:#fff}
+  .sr-head{background:#fff;border-bottom:1px solid #eee;padding:18px 20px;display:flex;align-items:center;gap:16px}
+  .sr-head a.logo{font-weight:800;color:#e5602f;text-decoration:none;font-size:20px}
+  .sr-head a.logo span{color:#222}
+  .sr-wrap{max-width:820px;margin:32px auto;padding:0 18px}
+  .sr-form{display:flex;gap:8px;margin-bottom:8px}
+  .sr-form input[type=search]{flex:1;padding:14px 16px;font-size:16px;border:2px solid #e5602f;border-radius:10px;outline:none;font-family:inherit}
+  .sr-form button{padding:0 22px;background:#e5602f;color:#fff;border:0;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer}
+  .sr-count{color:#888;font-size:14px;margin:14px 2px 20px}
+  .sr-item{display:block;padding:18px 4px;border-bottom:1px solid #f0f0f0;text-decoration:none;color:inherit}
+  .sr-item:hover{background:#fafafa}
+  .sr-item .t{color:#e5602f;font-size:17px;font-weight:700;margin-bottom:5px}
+  .sr-item .u{color:#4a9;font-size:12px;margin-bottom:6px}
+  .sr-item .s{color:#555;font-size:14px;line-height:1.6}
+  .sr-item .s mark{background:#ffe6db;color:#c0392b;padding:0 2px;border-radius:2px}
+  .sr-empty{color:#999;text-align:center;padding:60px 0}
+  .sr-back{display:inline-block;margin-top:24px;color:#888;text-decoration:none;font-size:14px}
+</style>
+</head>
+<body>
+<div class="sr-head">
+  <a class="logo" href="/">JK<span>위드미</span></a>
+  <span style="color:#aaa;font-size:14px">통합검색</span>
+</div>
+<div class="sr-wrap">
+  <form class="sr-form" onsubmit="return doSearch(event)">
+    <input type="search" id="q" name="s" placeholder="검색어를 입력하세요 (예: 코성형, 리프팅, 이벤트)" autofocus>
+    <button type="submit">검색</button>
+  </form>
+  <div class="sr-count" id="count"></div>
+  <div id="results"></div>
+  <a class="sr-back" href="/">← 홈으로</a>
+</div>
+<script>
+var IDX=null;
+function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function qparam(){var m=location.search.match(/[?&]s=([^&]*)/);return m?decodeURIComponent(m[1].replace(/\+/g,' ')):'';}
+function snippet(text,q){
+  var i=text.toLowerCase().indexOf(q.toLowerCase());
+  var start=Math.max(0,i-40), frag=text.substr(start,180);
+  if(start>0)frag='…'+frag; frag=esc(frag);
+  q.split(/\s+/).filter(Boolean).forEach(function(w){
+    frag=frag.replace(new RegExp('('+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'),'<mark>$1</mark>');
+  });
+  return frag+'…';
+}
+function render(q){
+  var res=document.getElementById('results'), cnt=document.getElementById('count');
+  if(!q){res.innerHTML='';cnt.textContent='';return;}
+  if(!IDX){cnt.textContent='색인 불러오는 중…';return;}
+  var terms=q.toLowerCase().split(/\s+/).filter(Boolean);
+  var hits=IDX.map(function(p){
+    var hay=(p.title+' '+p.text).toLowerCase(), score=0;
+    terms.forEach(function(t){var n=hay.split(t).length-1; if(hay.indexOf(t)<0)score-=999; score+=n; if(p.title.toLowerCase().indexOf(t)>=0)score+=5;});
+    return {p:p,score:score};
+  }).filter(function(x){return x.score>0;}).sort(function(a,b){return b.score-a.score;});
+  cnt.textContent='"'+q+'" 검색결과 '+hits.length+'건';
+  if(!hits.length){res.innerHTML='<div class="sr-empty">검색 결과가 없습니다.<br>다른 검색어로 시도해 보세요.</div>';return;}
+  res.innerHTML=hits.slice(0,50).map(function(x){
+    return '<a class="sr-item" href="'+esc(x.p.url)+'"><div class="t">'+esc(x.p.title)+'</div>'+
+      '<div class="u">'+esc(x.p.url)+'</div><div class="s">'+snippet(x.p.text,q)+'</div></a>';
+  }).join('');
+}
+function doSearch(e){e.preventDefault();var q=document.getElementById('q').value.trim();
+  history.replaceState(null,'','/search.html?s='+encodeURIComponent(q)); render(q); return false;}
+fetch('/search-index.json').then(function(r){return r.json();}).then(function(d){IDX=d;
+  var q=qparam(); if(q){document.getElementById('q').value=q; render(q);}
+}).catch(function(){document.getElementById('count').textContent='검색 색인을 불러오지 못했습니다.';});
+</script>
+</body>
+</html>

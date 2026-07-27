@@ -48,9 +48,39 @@
         }
     }
 
+    // 4) 사이트 검색 연결: name="s" 검색 입력을 자체 검색페이지(/search.html)로 라우팅
+    function wireSearch() {
+        var inputs = document.querySelectorAll('input[name="s"], input[type="search"]');
+        for (var i = 0; i < inputs.length; i++) {
+            var inp = inputs[i];
+            if (inp.getAttribute('data-jkw-search')) continue;
+            inp.setAttribute('data-jkw-search', '1');
+            // 소속 form이 있으면 form 제출을 가로채고, 없으면 Enter 키 처리
+            var form = inp.closest ? inp.closest('form') : null;
+            if (form) {
+                form.addEventListener('submit', function (e) {
+                    var box = this.querySelector('input[name="s"], input[type="search"]');
+                    var q = box ? box.value.trim() : '';
+                    e.preventDefault();
+                    location.href = '/search.html' + (q ? '?s=' + encodeURIComponent(q) : '');
+                });
+            } else {
+                inp.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        var q = this.value.trim();
+                        location.href = '/search.html' + (q ? '?s=' + encodeURIComponent(q) : '');
+                    }
+                });
+            }
+        }
+    }
+
+    function boot() { apply(); wireSearch(); }
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', apply);
+        document.addEventListener('DOMContentLoaded', boot);
     } else {
-        apply();
+        boot();
     }
 })();
