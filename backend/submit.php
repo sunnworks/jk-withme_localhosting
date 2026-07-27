@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/db.php';
 require __DIR__ . '/mailer.php';
+require __DIR__ . '/security.php';
 
 $config = jk_config();
 
@@ -74,11 +75,21 @@ if (!empty($_POST['website'])) {
     respond(true, '상담신청이 접수되었습니다.', $config);
 }
 
-// --- 입력값 정리 ---
-$name     = trim((string)($_POST['text_2'] ?? ''));
-$contact  = trim((string)($_POST['text_4'] ?? ''));
-$category = trim((string)($_POST['select_5'] ?? ''));
-$message  = trim((string)($_POST['message'] ?? ''));
+// --- 레이트리밋(스팸/과다요청 차단): IP당 10분에 5건 ---
+try {
+    if (!jkw_rate_limit_ok(jk_pdo(), jkw_client_ip(), 5, 600)) {
+        http_response_code(429);
+        respond(false, '요청이 너무 많습니다. 잠시 후 다시 시도해 주세요.', $config);
+    }
+} catch (Throwable $e) {
+    error_log('[JK] rate limit error: ' . $e->getMessage());
+}
+
+// --- 입력값 정리(태그·제어문자 제거) ---
+$name     = jkw_clean((string)($_POST['text_2'] ?? ''));
+$contact  = jkw_clean((string)($_POST['text_4'] ?? ''));
+$category = jkw_clean((string)($_POST['select_5'] ?? ''));
+$message  = jkw_clean((string)($_POST['message'] ?? ''));
 
 // 원본 폼은 value에 안내문("성함/Name" 등)이 기본으로 들어있음 → 안내문 그대로면 미입력 처리
 foreach (['성함/Name' => &$name, '연락처/SNS ID' => &$contact] as $placeholder => &$field) {
@@ -88,20 +99,8 @@ foreach (['성함/Name' => &$name, '연락처/SNS ID' => &$contact] as $placehol
 }
 unset($field);
 
-// --- 검증 ---
-$errors = [];
-if ($name === '' || mb_strlen($name) > 100) {
-    $errors[] = '성함을 확인해 주세요.';
-}
-if ($contact === '' || mb_strlen($contact) > 100) {
-    $errors[] = '연락처를 확인해 주세요.';
-}
-if ($category === '' || !in_array($category, ALLOWED_CATEGORIES, true)) {
-    $errors[] = '문의내용을 선택해 주세요.';
-}
-if (mb_strlen($message) > 2000) {
-    $errors[] = '문의내용이 너무 깁니다.';
-}
+// --- 엄격 검증(HTML/스크립트/URL/이상값 차단) ---
+$errors = jkw_validate_inquiry($name, $contact, $category, $message, ALLOWED_CATEGORIES);
 if ($errors) {
     respond(false, implode("\n", $errors), $config);
 }

@@ -54,6 +54,12 @@ $db->exec("CREATE TABLE IF NOT EXISTS settings (
     svalue TEXT
 )");
 
+$db->exec("CREATE TABLE IF NOT EXISTS rate_limits (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ip TEXT,
+    ts INTEGER
+)");
+
 // --- 관리자 계정 시드 (없을 때만) ---
 $has = (int)$db->query("SELECT COUNT(*) FROM admin_users")->fetchColumn();
 if ($has === 0) {

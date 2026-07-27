@@ -26,6 +26,12 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
+// 관리자 화면은 캐시 금지(뒤로가기 등으로 내용 노출 방지)
+if (!headers_sent()) {
+    header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+    header('Pragma: no-cache');
+}
+
 /** 로그인 여부 */
 function is_logged_in(): bool
 {

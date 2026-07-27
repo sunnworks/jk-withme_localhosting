@@ -39,6 +39,19 @@ CREATE TABLE IF NOT EXISTS `inquiries` (
   COMMENT='상담신청 접수 내역';
 
 -- ---------------------------------------------------------------------
+-- 레이트리밋 테이블 (IP별 요청 기록 — 스팸/과다요청 차단용)
+--   ts 는 UNIX 타임스탬프(초). DB 종류·타임존 무관하게 동작.
+-- ---------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `rate_limits` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ip` VARCHAR(45) NOT NULL,
+  `ts` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_ip_ts` (`ip`, `ts`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+  COMMENT='요청 제한 기록';
+
+-- ---------------------------------------------------------------------
 -- 사이트 설정 테이블 (key-value)
 --   이메일 알림 수신자, 발송 방식(SMTP/mail) 등을 관리자페이지에서 변경
 -- ---------------------------------------------------------------------
