@@ -15,6 +15,12 @@
 
 declare(strict_types=1);
 
+// 예기치 않은 출력(메일 경고 등)이 JSON 응답에 섞이지 않도록 방지
+@ini_set('display_errors', '0');
+if (function_exists('ob_start')) {
+    ob_start();
+}
+
 require __DIR__ . '/db.php';
 require __DIR__ . '/mailer.php';
 require __DIR__ . '/security.php';
@@ -32,6 +38,11 @@ const ALLOWED_CATEGORIES = [
 /** 응답 헬퍼: AJAX면 JSON, 일반 폼전송이면 리다이렉트 */
 function respond(bool $ok, string $message, array $config): void
 {
+    // 버퍼에 쌓인 예기치 않은 출력(경고·공백 등) 제거 → 깨끗한 JSON 보장
+    while (function_exists('ob_get_level') && ob_get_level() > 0) {
+        ob_end_clean();
+    }
+
     $isAjax = (
         (isset($_SERVER['HTTP_X_REQUESTED_WITH'])
             && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest')

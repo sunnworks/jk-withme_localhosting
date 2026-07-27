@@ -45,6 +45,24 @@
                 f.setAttribute('action', ENDPOINT);
                 f.setAttribute('method', 'post');
             }
+
+            // 4) 입력 UX: 안내문구를 placeholder 로 바꿔 클릭 시 자동으로 비워지게
+            var DEFAULTS = { 'text_2': '성함/Name', 'text_4': '연락처/SNS ID' };
+            for (var key in DEFAULTS) {
+                var box = f.querySelector('input[name="' + key + '"]');
+                if (box && (box.value === DEFAULTS[key] || box.value === '')) {
+                    box.placeholder = DEFAULTS[key];
+                    box.value = '';
+                }
+            }
+            // 셀렉트 첫 항목(빈 값) 안내문구를 "선택해주세요" 로
+            var sels = f.querySelectorAll('select');
+            for (var s = 0; s < sels.length; s++) {
+                var opt0 = sels[s].querySelector('option[value=""]');
+                if (opt0 && /선택/.test(opt0.textContent)) {
+                    opt0.textContent = '선택해주세요';
+                }
+            }
         }
     }
 
