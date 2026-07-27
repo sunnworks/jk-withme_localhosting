@@ -2,17 +2,23 @@
 chcp 65001 >nul
 cd /d "%~dp0"
 
-where php >nul 2>nul
-if errorlevel 1 (
-  echo [!] PHP not found. Please install PHP 7.4+ first.
+REM --- locate php.exe folder (to find its ext directory) ---
+set "PHPDIR="
+for %%i in (php.exe) do set "PHPDIR=%%~dp$PATH:i"
+if not defined PHPDIR (
+  echo [!] PHP not found in PATH. Please install PHP 7.4+ first.
   echo     Windows: install XAMPP from https://www.apachefriends.org  ^(includes PHP^)
   pause
   exit /b 1
 )
 
-php setup-local.php
+REM --- enable SQLite drivers at runtime, so php.ini is NOT required ---
+set "EXT=-d extension_dir=%PHPDIR%ext -d extension=pdo_sqlite -d extension=sqlite3"
+
+php %EXT% setup-local.php
 if errorlevel 1 (
-  echo [!] Setup failed.
+  echo.
+  echo [!] Setup failed. See the message above.
   pause
   exit /b 1
 )
@@ -26,5 +32,5 @@ echo   ^(Press Ctrl + C to stop the server^)
 echo ======================================================
 echo.
 
-php -S localhost:8000 -t site
+php %EXT% -S localhost:8000 -t site
 pause
